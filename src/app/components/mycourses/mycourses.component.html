@@ -101,11 +101,11 @@
             <div class="alert alert-success" role="alert">
               <div *ngIf="certificateActive">
                 <div *ngIf="!pass">
-                  <button type="button" class="btn btn-secondary blockquote" style="margin-top:15px;" disabled>
+                  <button type="button" class="btn btn-success blockquote" style="margin-top:15px;" disabled>
                     <i class="fas fa-certificate"></i> Imprimir constancia
                   </button>
                 </div>
-                <div *ngIf="pass">
+                <div *ngIf="pass && certificateNumber != null">
                   <a href='https://goo.gl/forms/ysPqeLpN4yIJPmeZ2' target="_blank" type="button" class="btn btn-success blockquote" style="margin-top:15px;" (click)="shownewDoubt(infoconst)"><i class="fas fa-certificate"></i> Imprimir constancia</a>
                 </div>
               </div>

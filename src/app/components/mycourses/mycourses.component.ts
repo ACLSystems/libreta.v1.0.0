@@ -61,6 +61,7 @@ export class MycoursesComponent implements OnInit, DoCheck {
   public finalGrade:any;
   public pass:boolean = false;
   public certificateActive:boolean=false;
+  public certificateNumber:string;
   public rolUser:boolean;
 
   public nameStudent:string;
@@ -202,6 +203,7 @@ export class MycoursesComponent implements OnInit, DoCheck {
       this.beginDate = new Date(res.beginDate);
       this.endDateSpa = res.endDateSpa;
       this.beginDateSpa= res.beginDateSpa;
+      this.certificateNumber = res.certificateNumber;
 
       if(this.endDate.getTime() < today.getTime()){
         this.endCourse = false;
@@ -272,28 +274,38 @@ export class MycoursesComponent implements OnInit, DoCheck {
 
     var doc = new jsPDF();
     doc.addImage(this.imgconalogo,'jpg',5,0,200,300);
+    //Seccion de los folios
+    doc.setFont("georgia");
+    doc.setFontSize(18);
+    doc.setTextColor(255,0,0);
+    doc.text(25,270,"Folio "+this.certificateNumber,null,null);
+
     // Seccion del nombre del alumno
     doc.setFont("georgia");
     doc.setFontType('bold');
     doc.setFontSize(24);
+    doc.setTextColor(100);
     doc.text(105,155,this.nameStudent,null,null,'center');
 
     //Seccion del nombre del curso
     doc.setFont("georgia");
     doc.setFontType('bold');
     doc.setFontSize(16);
+    doc.setTextColor(100);
     doc.text(105,181,'"'+this.course+'"',null,null,'center');
 
     //Seccion de la calificacion final del estudiante
     doc.setFont("georgia");
     doc.setFontType('bold');
     doc.setFontSize(11);
+    doc.setTextColor(100);
     doc.text(111,173,finalgrade,'center');
 
     //duracion del curso
     doc.setFont("georgia");
     doc.setFontType('regular');
     doc.setFontSize(12);
+    doc.setTextColor(100);
     doc.text(70,190,''+this.duration+' '+this.durationUnit);
 
     //fecha de termino del curso por parte del alumno
