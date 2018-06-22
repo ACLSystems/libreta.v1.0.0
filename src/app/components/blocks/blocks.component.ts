@@ -29,6 +29,7 @@ declare var $:any;
 export class BlocksComponent implements OnInit{
 
   public token;
+  public identiti;
   public block:string;
   public blockTitle:string;
   public blockNext:string;
@@ -110,6 +111,7 @@ export class BlocksComponent implements OnInit{
 
   constructor(private _router:Router, private _activeRouter:ActivatedRoute, public _course:CourseService, private _user:UserService, private modalService:NgbModal, private domnsanitizer:DomSanitizer) {
     this.token = this._user.getToken();
+    this.identiti = this._user.getIdentiti();
     this.mapquiz = new AnswersTemp('');
     this.task = new TaskEntry('','',null);
     this._activeRouter.params.subscribe( params =>{
@@ -130,6 +132,7 @@ export class BlocksComponent implements OnInit{
 
   ngOnInit() {
     this.token = this._user.getToken();
+    this.identiti = this._user.getIdentiti();
     this.isSendTask = false;
     this.getBlock(this.blockid,true);
     this._course.showBlocksTrack(this.groupid, this.token).subscribe(data=>{
@@ -249,6 +252,7 @@ export class BlocksComponent implements OnInit{
       this.resutlquestion = false;
     }
     this.attemp = new Attemp(this.groupid, this.blockidTo, answers, this.grade);
+
     this._course.setAttempt(this.attemp).subscribe(data=>{
       this.totalattemp++;
       if(this.maxAttempts === this.totalattemp){
@@ -400,7 +404,7 @@ export class BlocksComponent implements OnInit{
   Funcion de modal para validar las respuestas del usuario
   */
   public showAccept(content){
-    this.closemodal = this.modalService.open(content);
+    this.closemodal = this.modalService.open(content, {size: 'lg'});
   }
 
   /*
@@ -434,6 +438,8 @@ export class BlocksComponent implements OnInit{
   */
   getBlock(id:string, prev:boolean){
     this.token = this._user.getToken();
+    this.identiti = this._user.getIdentiti();
+    console.log(this.identiti);
     this.isSendTask = false;
     this._course.getBlock(this.groupid, this.courseid, id, prev).subscribe(data=>{
       this.blockidTo = id;

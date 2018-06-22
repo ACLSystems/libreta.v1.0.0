@@ -706,28 +706,33 @@
 
         <wizard-step>
           <div *ngIf="resutlquestion" class="text-success text-center">
-
-            <h1 class="display-4">
-              <i class="fas fa-quote-left"></i> Felicidades, has aprobado la evaluación
-              <br>
-              <i class="far fa-smile"></i>
+            <h1>
+              <i class="fas fa-quote-left"></i> Puntuación obtenida en esta evaluación
             </h1>
             <br>
-            <h4>Calificación obtenida: {{grade | number:'.0-2'}}</h4>
+            <h3>Curso: <small>{{block}}</small></h3>
+            <hr>
+            <h4>Nombre completo: {{identiti.person.name}} {{identiti.person.fatherName}} {{identiti.person.motherName}}</h4>
+            <h4>Usuario: {{identiti.name}}</h4>
+            <hr>
+            <h4>Evaluación: {{blockTitle}}</h4>
             <h4>Total de aciertos: {{gradefinal}}</h4>
-
+            <h4>Calificación obtenida: {{grade | number:'.0-2'}}</h4>
           </div>
-          <div *ngIf="!resutlquestion" class="text-danger text-center">
-
-            <h1 class="display-4">
-              <i class="fas fa-quote-left"></i> Sigue intentándolo
-              <br>
-              <i class="far fa-frown"></i>
-            </h1>
+          <div *ngIf="!resutlquestion" class="text-danger text-justify">
+            <h2>
+              <i class="fas fa-quote-left"></i> Puntuación obtenida en esta evaluación
+            </h2>
             <br>
-            <h4>Calificación obtenida: {{grade | number:'.0-2'}}</h4>
+            <h3>Curso: <small>{{block}}</small></h3>
+            <hr>
+            <h4>Nombre completo: <small>{{identiti.person.name}} {{identiti.person.fatherName}} {{identiti.person.motherName}}</small></h4>
+            <h4>Usuario: <small>{{identiti.name}}</small></h4>
+            <br>
+            <h4>{{blockTitle}}</h4>
+            <hr>
             <h4>Total de aciertos: {{gradefinal}}</h4>
-
+            <h4>Calificación obtenida: {{grade | number:'.0-2'}}</h4>
           </div>
         </wizard-step>
       </wizard>
